@@ -47,9 +47,10 @@ header  {
     grid-template-rows: auto;
     row-gap: 20px;
     column-gap: 15px;
-    margin: 0 10px;
+    margin: 0 25px;
 }
 .card {
+    width: auto;
     display: flex;
     border: 1px solid lightslategray;
     border-radius: 25px;
@@ -69,6 +70,46 @@ header  {
 .email {
     color: darkgrey;
     margin: 8px 0;
-    font-size: x-small;
 }
 
+@media screen and (min-width: 768px) {
+    .grid-container {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .modal {
+        width: 375px;
+        margin: 15% auto auto;
+        position: relative;
+        text-align: center;
+        background: white;
+        border: 1px solid lightcyan;
+        border-radius: 10px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .grid-container {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: auto;
+    }
+
+    .header{
+        display: flex;
+        align-items: center;
+    }
+
+    .name, .email, .address {
+        font-size: 15px;
+    }
+
+    .modal {
+        width: 375px;
+        margin: 15% auto auto;
+        position: relative;
+        text-align: center;
+        background: #fff;
+        border: 1px solid rgb(216, 214, 214);
+        border-radius: 10px;
+    }
+}
