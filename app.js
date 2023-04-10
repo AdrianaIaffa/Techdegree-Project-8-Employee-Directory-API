@@ -4,7 +4,7 @@ const urlAPI =`https://randomuser.me/api/?results=12&inc=name,picture,email, loc
 const gridContainer = document.querySelector(".grid-container");
 const overlay = document.querySelector(".overlay");
 const modalContainer = document.querySelector(".modal");
-const modalClose = document.querySelector(".modal-close");
+
 
 //Fetch data from API
 fetch(urlAPI)
@@ -43,6 +43,7 @@ function displayModal(index) {
 
     let date = new Date(dob.date);
     const modalHTML = `
+    <p class="modal-close">X</p>
     <img class="avatar" src="${picture.large}" />
         <div class="text-container">
             <h2 class="name">${name.first} ${name.last}</h2>
@@ -51,22 +52,28 @@ function displayModal(index) {
             <hr />
             <p>${phone}</p>
             <p class="address">${street.number}, ${street.name}, ${state} ${postcode}</p>
-            <p>Birthday:${date.getMonth()}/${date.getDate()}/${date.getFullYear()}</p>
+            <p>Birthday:${date.getMonth()+1}/${date.getDate()}/${date.getFullYear()}</p>
         </div>
     `;
     overlay.classList.remove("hidden");
     modalContainer.innerHTML = modalHTML;
+    
 }
 
 gridContainer.addEventListener('click', e => {
     if (e.target !== gridContainer) {
         const card = e.target.closest(".card");
         const index = card.getAttribute('data-index');
+        
 
         displayModal(index);
+        const modalClose = document.querySelector(".modal-close");
+        modalClose.addEventListener('click', () =>{
+            overlay.classList.add("hidden");
+        });
     }
 });
 
-modalClose.addEventListener('click', () =>{
-    overlay.classList.add("hidden");
-});
+// modalClose.addEventListener('click', () =>{
+//     overlay.classList.add("hidden");
+// });
